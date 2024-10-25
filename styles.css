@@ -1,0 +1,171 @@
+body {
+    display: flex;
+    flex-direction: column;  /* This ensures that elements stack vertically */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 20px;
+    background-color: #e0b9b9;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.container {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 800px;
+}
+
+.form-section {
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.objective-function, .constraint {
+    width: 100%;
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.constraint input, .objective-function input, .objective-function select, .constraint select {
+    width: calc(100% / 3 - 10px);
+    margin: 5px;
+}
+
+
+button {
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+select {
+    text-align: center; /* Aligns text to the center for Firefox */
+    text-align-last: center; /* Aligns the initially selected option to the center for Chrome and Edge */
+}
+
+.mathquill-editable {
+    border: 1px solid #ccc;
+    padding: 8px;
+    min-width: 225px;
+    margin: 5px;
+    display: inline-block; 
+    background-color: #fff;
+    min-height: 25px; /* Ensure enough height for easy interaction */
+    position: relative;  /* Set the parent element to relative positioning */
+}
+
+.mq-placeholder {
+    font-style: italic;
+    color: #aaa;
+    opacity: 0.5;             /* Adjust transparency */
+    font-size: 14px;          /* Adjust font size */
+    pointer-events: none;     /* Allows clicking directly on the MathQuill field */
+    position: absolute;       /* Absolute positioning relative to parent */
+    top: 50%;                 /* Center vertically */
+    left: 50%;                /* Center horizontally */
+    transform: translate(-50%, -50%);  /* Translate to perfectly center the text */
+    text-align: center;       /* Center the text if it wraps to a new line */
+    width: 100%;              /* Ensure the placeholder spans the width of the field */
+}
+
+/* Adjust vertical spacing between items */
+.constraint {
+    margin-bottom: 0px;  /* Adds space between each constraint */
+}
+
+#add-constraint, #remove-constraint {
+    margin-top: 10px;    /* Space above the buttons */
+    margin-bottom: 0px; /* Space below the buttons */
+}
+
+.constraints-container {
+    margin-bottom: 30px; /* Space below the entire container for general spacing */
+}
+
+#add-constraint {
+    margin-right: 15px;  /* Adds space to the right of the Add button */
+}
+
+#remove-constraint, #calculate-kkt {
+    background-color: #ff4d4d; /* Red background */
+    color: white;              /* White text */
+    border: none;              /* Remove border */
+    padding: 10px 15px;        /* Padding for size */
+    border-radius: 5px;        /* Rounded corners */
+    cursor: pointer;           /* Pointer cursor */
+}
+
+#remove-constraint:hover, #calculate-kkt:hover {
+    background-color: #ff1a1a; /* Darker red on hover */
+}
+
+#calculate-kkt {
+    margin-top: 30px;
+}
+
+h1, h2, h3 {
+    margin-top: 5px;     /* Adjust top margin to decrease space above */
+    margin-bottom: 5px;  /* Adjust bottom margin to decrease space below */
+}
+
+#objective-type {
+    width: 110px; /* Set to your desired width */
+}
+
+#math-toolbar {
+    position: absolute;
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.math-btn {
+    margin: 5px;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+
+#objective-gradient-condition {
+    display: block;  /* Ensure the parent div allows children to stack vertically */
+    margin-bottom: 20px; /* Adds space between sections */
+}
+
+#result-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 800px;
+    margin-top: 20px;
+}
+
+

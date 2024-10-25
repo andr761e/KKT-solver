@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathQuill Corrected Loading Order</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.min.js"></script>
+    <style>
+        .mathquill-editable {
+            border: 1px solid #ccc;
+            padding: 8px;
+            min-width: 150px;
+            margin: 10px;
+            display: inline-block;
+            background-color: #fff;
+            min-height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>MathQuill Test Input</h1>
+    <p>Type math here: <span id="math-field" class="mathquill-editable"></span></p>
+    <p>LaTeX of what you typed: <span id="latex"></span></p>
+
+    <script>
+        $(document).ready(function() {
+            // Ensure MathQuill is loaded after the DOM and jQuery are fully loaded
+            try {
+                var MQ = MathQuill.getInterface(2);
+                var mathFieldSpan = document.getElementById('math-field');
+                var latexSpan = document.getElementById('latex');
+
+                // Initialize MathQuill on the selected element
+                var mathField = MQ.MathField(mathFieldSpan, {
+                    spaceBehavesLikeTab: true,
+                    handlers: {
+                        edit: function() {
+                            // Update LaTeX in real-time
+                            latexSpan.textContent = mathField.latex();
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error("MathQuill failed to initialize:", error);
+            }
+        });
+    </script>
+</body>
+</html>
