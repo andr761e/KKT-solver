@@ -11,7 +11,7 @@ body {
 }
 
 .container {
-    display: block;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -20,7 +20,7 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 800px;
+    width: 1000px;
 }
 
 .form-section {
@@ -164,7 +164,7 @@ h1, h2, h3 {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 800px;
+    width: 1000px;
     margin-top: 20px;
 }
 
