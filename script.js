@@ -302,3 +302,25 @@ $(document).ready(function() {
 });
 
 
+document.addEventListener("DOMContentLoaded", function () {
+    const MQ = MathQuill.getInterface(2); // Get the MathQuill interface for version 2
+
+    // Select all buttons with class "math-btn"
+    const buttons = document.querySelectorAll('.math-btn');
+
+    buttons.forEach(button => {
+        // Create a span to contain the MathQuill content
+        const span = document.createElement('span');
+        const latexText = button.innerHTML;
+
+        // Clear the button's content and add the span with MathQuill rendering
+        button.innerHTML = '';
+
+        // Render the LaTeX inside the span
+        const mathField = MQ.StaticMath(span);
+        mathField.latex(latexText);
+
+        button.appendChild(span);
+    });
+});
+
