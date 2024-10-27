@@ -1,3 +1,27 @@
+//Update math-bar latex
+document.addEventListener("DOMContentLoaded", function () {
+    const MQ = MathQuill.getInterface(2); // Get the MathQuill interface for version 2
+
+    // Select all buttons with class "math-btn"
+    const buttons = document.querySelectorAll('.math-btn');
+
+    buttons.forEach(button => {
+        // Create a span to contain the MathQuill content
+        const span = document.createElement('span');
+        const latexText = button.innerHTML;
+
+        // Clear the button's content and add the span with MathQuill rendering
+        button.innerHTML = '';
+
+        // Render the LaTeX inside the span
+        const mathField = MQ.StaticMath(span);
+        mathField.latex(latexText);
+
+        button.appendChild(span);
+    });
+});
+
+
 $(document).ready(function() {
     try {
         const MQ = MathQuill.getInterface(2);
@@ -154,10 +178,12 @@ $(document).ready(function() {
             try {
                 // Extract Objective Function
                 const objectiveFunction = document.getElementById('objective-function').mathField.latex();
+
+                // Check if objective function is empty
                 if (!objectiveFunction || objectiveFunction.trim() === '') {
                     alert('Objective function field is empty. Please provide a valid function.');
                     return;
-                }
+                } 
                 const objectiveType = document.getElementById('objective-type').value;
                 data.objectiveFunction = {
                     type: objectiveType,
@@ -179,8 +205,29 @@ $(document).ready(function() {
                 });
                 data.constraints = constraints;
 
+                // Check if constraints are empty
+                document.querySelectorAll('.constraint').forEach((constraint, index) => {
+                    const constraintFunction = constraint.querySelector('.constraint-function').mathField.latex();
+                    const constraintValue = constraint.querySelector('.constraint-value').mathField.latex();
+                    if(!constraintFunction || constraintFunction.trim() === ''){
+                        alert('A constraint is empty. Please provide a valid constraint');
+                        return;
+                    }
+                    if(!constraintValue || constraintValue.trim() === ''){
+                        alert('A constraint is empty. Please provide a valid constraint');
+                        return;
+                    }
+                });
+
                 // Extract Objective Variables
                 const objectiveVariables = document.getElementById('objective-variables').mathField.latex();
+
+                // Check if objective variables is empty
+                if (!objectiveVariables || objectiveVariables.trim() === '') {
+                    alert('Objective variable field is empty. Please provide valid objective variables seperated by comma.');
+                    return;
+                } 
+
                 data.objectiveVariables = objectiveVariables;
 
                 //List of the variables
@@ -288,39 +335,20 @@ $(document).ready(function() {
                     }
                 })
                 .catch(error => {
+                    alert("The LaTeX expression is incomplete or not valid!");
                     console.error('Error:', error);
                 });
 
             } catch (error) {
+                alert("The LaTeX expression is incomplete or not valid!");
                 console.error('Data extraction error:', error);
             }
         });
 
     } catch (error) {
+        alert("The LaTeX expression is incomplete or not valid!");
         console.error("MathQuill failed to initialize:", error);
     }
 });
 
-
-document.addEventListener("DOMContentLoaded", function () {
-    const MQ = MathQuill.getInterface(2); // Get the MathQuill interface for version 2
-
-    // Select all buttons with class "math-btn"
-    const buttons = document.querySelectorAll('.math-btn');
-
-    buttons.forEach(button => {
-        // Create a span to contain the MathQuill content
-        const span = document.createElement('span');
-        const latexText = button.innerHTML;
-
-        // Clear the button's content and add the span with MathQuill rendering
-        button.innerHTML = '';
-
-        // Render the LaTeX inside the span
-        const mathField = MQ.StaticMath(span);
-        mathField.latex(latexText);
-
-        button.appendChild(span);
-    });
-});
 
